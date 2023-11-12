@@ -54,15 +54,20 @@ def main():
     Y_pred = linear_regressor.predict(X)  # make predictions
     plt.plot(X, Y_pred, color='red')
     
+    # Compute and print R^2 value
+    r_squared = linear_regressor.score(X, Y)
+    print("R^2:", r_squared)
+
     slope = round(linear_regressor.coef_[0][0])
     intercept = round(linear_regressor.intercept_[0])
     
     print("Slope:", slope)
     print("Intercept:", intercept)
     
-    ax.text(1, 4500, f'$Y = {slope} * X + {intercept}$', fontsize=10)
+    # Add text to plot for slope, intercept, and R^2
+    ax.text(1, 4000, f'$Y = {slope} * X + {intercept}$\n$R^2 = {round(r_squared, 2)}$', fontsize=10)
     
-    #plt.savefig('fed_vs_sp.eps', format='eps')
+    plt.savefig('fed_vs_sp.png', format='png')
 
     plt.show()
 
